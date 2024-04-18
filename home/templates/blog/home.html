@@ -1,0 +1,49 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="...">
+            </div>
+            <!-- Add more carousel items as needed -->
+        </div>
+    </div>
+
+    <h2 class="mb-4 text-center">Recent Blog Posts</h2>
+    <div class="row">
+        {% for post in recent_posts %}
+            <div class="col-md-3 mb-4">
+                <div class="card" style="width: 15rem;">
+                    
+                    <div class="card-body">
+                        <img src="{{ post.image.url }}" class="card-img-top img-thumbnail" alt="{{ post.title }}" style="width: 200px; height: 200px;">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content|truncatechars:25 }}</p>
+                        <a href="{% url 'post-detail' post.id %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% comment %} <h2>Popular Blog Posts</h2>
+    <div class="row">
+        {% for post in popular_posts %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content|truncatechars:100 }}</p>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div> {% endcomment %}
+{% endblock %}
